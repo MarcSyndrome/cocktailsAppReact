@@ -17,6 +17,9 @@ import UserData from "./Components/UserData";
 import Cocktails from "./Components/Cocktails";
 import Details from "./Components/Details";
 
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
 // Composant affichant une liste de cocktails aléatoires
 function HomeScreen() {
   const [randomCocktail, setRandomCocktail] = useState([]);
@@ -49,97 +52,114 @@ function HomeScreen() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <FlatList
-        data={randomCocktail}
-        renderItem={({ item }) => (
-          <View style={styles.listContainer}>
+    <FlatList
+      data={randomCocktail}
+      renderItem={({ item }) => (
+        <View style={styles.listContainer}>
+          <View style={styles.imageContainer}>
             <Image
-              style={{ width: 60, height: 60 }}
+              style={styles.image}
               source={{ uri: `${item.strDrinkThumb}` }}
             />
-            <Text style={{ paddingHorizontal: 10 }}>{item.strDrink}</Text>
           </View>
-        )}
-      />
-    </View>
+          <Text style={{ paddingHorizontal: 10 }}>{item.strDrink}</Text>
+        </View>
+      )}
+    />
+  </View>
   );
 }
-
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
 // Composant principal de l'application
 export default function App() {
     return (
-<NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen
-                    name="Cocktailish"
-                    component={HomeScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="home" color={color} size={size} />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Cocktails"
-                    component={CocktailsScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome name="glass" color={color} size={size} />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="User"
-                    component={UserScreen}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <FontAwesome name="user" color={color} size={size} />
-                        ),
-                    }}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Cocktailish"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Cocktails"
+          component={CocktailsScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="glass" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="User"
+          component={UserScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="user" color={color} size={size} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   )
 }
 
 // Composant affichant les données de l'utilisateur
 function UserScreen() {
-    return (
-        <UserData/>
-    );
+  return (
+    <UserData/>
+  );
 }
 
 // Composant affichant la liste des cocktails
 function CocktailsScreen() {
-    return (
-        <Cocktails/>
-    );
+  return (
+    <Cocktails/>
+  );
 }
 
 // Composant affichant les détails d'un cocktail
 function DetailScreen() {
-    return (
-        <Details/>
-    );
+  return (
+    <Details/>
+  );
 }
 
 // Styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        height: '100%'
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    height: '100%'
+  },
+  listContainer:{
+    flex:1,
+    flexDirection:'row',
+    alignItems:'center',
+    borderWidth:1,
+    width:'100%'
+  },
+  imageContainer: {
+    width: 90,
+    height: 80,
+    margin: 15,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 5,
     },
-    listContainer:{
-        flex:1,
-        flexDirection:'row',
-        alignItems:'center',
-        borderWidth:1,
-        width:'100%'
-    }
+    shadowRadius: 5,
+    elevation: 6,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  },
 })
 
 
