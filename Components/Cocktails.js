@@ -1,16 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  Image } from "react-native";
 
-// Fonction principale du composant "Cocktails"
+import Details from "./Details";
+import Styles from "../assets/Styles";
+
+// Composant affichant une liste de cocktails aléatoires
 export default function Cocktails() {
-  // Le composant ne manipule pas de state ni n'a besoin de s'abonner à des effets
-  // pour le moment, donc cette fonction est vide.
-  useEffect(() => {}, []);
+  const [randomCocktail, setRandomCocktail] = useState([]);
 
-  // Le composant retourne une vue contenant un texte "Cocktails"
+  useEffect(() => {
+    // Fonction qui récupère un cocktail aléatoire depuis l'API
+    const cocktails = async () => {
+      const response = await fetch(
+        'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+      );
+      const data = await response.json();
+      return data.drinks[0];
+    };
+
+    // Fonction qui récupère 10 cocktails aléatoires
+    const getUniqueCocktails = async (uniqueCocktails) => {
+      if (uniqueCocktails.size >= 10) {
+        setRandomCocktail([...uniqueCocktails]);
+        return;
+      }
+
+      const cocktail = await cocktails();
+      uniqueCocktails.add(cocktail);
+
+      getUniqueCocktails(uniqueCocktails);
+    };
+
+    getUniqueCocktails(new Set());
+  }, []);
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Cocktails</Text>
-    </View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <FlatList
+      data={randomCocktail}
+      renderItem={({ item }) => (
+        <View style={Styles.listContainer}>
+          <View style={Styles.imageContainer}>
+            <Image
+              style={Styles.image}
+              source={{ uri: `${item.strDrinkThumb}` }}
+            />
+          </View>
+          <Text style={{ paddingHorizontal: 10 , fontSize: 15}}>{item.strDrink}</Text>
+        </View>
+      )}
+    />
+  </View>
   );
 }
