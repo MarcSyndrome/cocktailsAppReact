@@ -13,21 +13,27 @@ const styles = StyleSheet.create({
       width:'100%'
     },
     imageContainer: {
-      width: 100,
-      height: 100,
+      width: 170,
+      height:170,
       margin: 15,
+      marginBottom: 40,
       borderRadius: 15,
       shadowColor: '#000',
       shadowOffset: {
         width: 2,
-        height: 5,
+        height:15,
       },
-      shadowRadius: 5,
-      elevation: 6,
+      elevation: 9,
     },
     image: {
-      width: '100%',
-      height: '100%',
+      width: 170,
+      height: 170,
       borderRadius: 10,
     },
+    textDefinition: {
+      fontWeight: 'bold',
+      color: '#000',
+    },
   })
+
+  export default styles;

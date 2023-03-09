@@ -47,10 +47,10 @@ export default function Cocktails() {
           <View style={Styles.imageContainer}>
             <Image
               style={Styles.image}
-              source={{ uri: `${item.strDrinkThumb}` }}
-            />
+              source={{ uri: item.strDrinkThumb }}
+              />
           </View>
-          <Text style={{ paddingHorizontal: 10 , fontSize: 15}}>{item.strDrink}</Text>
+          <Text style={ Styles.textDefinition}>{item.strDrink}</Text>
         </View>
       )}
     />

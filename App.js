@@ -40,8 +40,10 @@ export default function App() {
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             ),
-            tabBarStyle: { backgroundColor: '#fffff0' },
+            tabBarStyle: { backgroundColor: '#f2ffff' },
             tabBarLabelStyle: { fontSize: 20 },
+            tabBarActiveTintColor: '#0080ff',
+            tabBarInactiveTintColor: 'black',
           }}
         />
         <Tab.Screen
@@ -52,6 +54,8 @@ export default function App() {
               <FontAwesome name="glass" color={color} size={size} />
             ),
             tabBarLabelStyle: { fontSize: 20 },
+            tabBarActiveTintColor: '#0080ff',
+            tabBarInactiveTintColor: 'black',
           }}
         />
       </Tab.Navigator>
