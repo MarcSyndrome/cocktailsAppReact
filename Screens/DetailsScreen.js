@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
-export default function Details({ id }) {
+function DetailsScreen({ id }) {
   const [cocktail, setCocktail] = useState();
 
   useEffect(() => {
@@ -11,6 +11,7 @@ export default function Details({ id }) {
       );
       const data = await response.json();
       setCocktail(data.drinks);
+      console.log(data);
     };
 
     fetchCocktail();
@@ -23,3 +24,5 @@ export default function Details({ id }) {
     </View>
   );
 }
+
+export default DetailsScreen;

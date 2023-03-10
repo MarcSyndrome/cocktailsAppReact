@@ -1,16 +1,16 @@
 import * as React from "react";
 import { Text, View, Image } from "react-native";
-import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
 import CocktailsScreen from "./Screens/CocktailsScreen";
 import DetailsScreen from "./Screens/DetailsScreen";
-import Styles from "./assets/Styles";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 // Composant affichant l'image de base et les redirections
 function HomeScreen() {
@@ -27,7 +27,7 @@ function HomeScreen() {
   );
 }
 
-// Composant principal de l'application
+// Composant principal de l'application, icones dans navbar, redirection des details cocktails
 export default function App() {
   return (
     <NavigationContainer>
@@ -46,8 +46,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Cocktails"
-          component={CocktailsScreen}
+          name="Cocktail"
           options={{
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="glass" color={color} size={size} />
@@ -56,7 +55,22 @@ export default function App() {
             tabBarActiveTintColor: "#0080ff",
             tabBarInactiveTintColor: "black",
           }}
-        />
+        >
+          {() => (
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Cocktails"
+                component={CocktailsScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="DetailsScreen"
+                component={DetailsScreen}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          )}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );
