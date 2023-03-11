@@ -1,16 +1,17 @@
+// Composant
+import ListCocktails from "./components/ListCocktails";
+import DetailsCocktails from "./components/DetailsCocktail";
+
 import * as React from "react";
 import { Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
-import CocktailsScreen from "./Screens/CocktailsScreen";
-import DetailsScreen from "./Screens/DetailsScreen";
-
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 // Composant affichant l'image de base et les redirections
 function HomeScreen() {
@@ -24,6 +25,15 @@ function HomeScreen() {
         Bienvenue sur Cocktailish !
       </Text>
     </View>
+  );
+}
+
+function Home() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Cocktails aléatoires" component={ListCocktails} />
+      <Stack.Screen name="Detail" component={DetailsCocktails} />
+    </Stack.Navigator>
   );
 }
 
@@ -46,7 +56,8 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Cocktail"
+          name="Cocktails"
+          component={Home}
           options={{
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="glass" color={color} size={size} />
@@ -55,22 +66,7 @@ export default function App() {
             tabBarActiveTintColor: "#0080ff",
             tabBarInactiveTintColor: "black",
           }}
-        >
-          {() => (
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Cocktails"
-                component={CocktailsScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="DetailsScreen"
-                component={DetailsScreen}
-                options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
-          )}
-        </Tab.Screen>
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
