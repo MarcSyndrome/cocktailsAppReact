@@ -12,6 +12,7 @@ import Styles from "../assets/Styles";
 function CocktailList({ navigation }) {
   const [cocktails, setCocktails] = useState([]);
 
+  // fonction qui renvoie un cocktail aléatoire de l'API thecocktaildb
   const fetchCocktails = async () => {
     const response = await axios.get(
       "https://www.thecocktaildb.com/api/json/v1/1/random.php"
@@ -19,6 +20,7 @@ function CocktailList({ navigation }) {
     return response.data.drinks[0];
   };
 
+  // fonction qui récupère 10 cocktails aléatoires et les stocke dans l'état
   const fetchAllCocktails = async () => {
     const cocktailsData = [];
     for (let i = 0; i < 10; i++) {
@@ -28,17 +30,21 @@ function CocktailList({ navigation }) {
     setCocktails(cocktailsData);
   };
 
+  // effet qui appelle fetchAllCocktails() une seule fois au chargement de la liste des cocktails
   useEffect(() => {
     fetchAllCocktails();
   }, []);
 
+  // fonction qui rend chaque élément de la FlatList des cocktails
   const renderCocktail = ({ item }) => {
     const { idDrink, strDrink, strDrinkThumb, strCategory } = item;
 
+    // fonction qui navigue vers la page de détails du cocktail correspondant au clic de l'utilisateur
     const handlePress = () => {
       navigation.navigate("Detail", { id: idDrink });
     };
 
+    // rendu de chaque élément de la liste des cocktails
     return (
       <TouchableWithoutFeedback onPress={handlePress}>
         <View style={Styles.card}>
@@ -56,6 +62,7 @@ function CocktailList({ navigation }) {
     );
   };
 
+  // rendu du composant CocktailList
   return (
     <View style={Styles.container}>
       <FlatList

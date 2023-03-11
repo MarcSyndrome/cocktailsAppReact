@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginTop: 35,
     marginBottom: 10,
-    borderRadius: 5,
+    borderRadius: 7,
     elevation: 6,
   },
   category: {
@@ -65,7 +65,9 @@ const styles = StyleSheet.create({
     color: "grey",
   },
   cardDetails: {
-    padding: 16,
+    flex: 1,
+    alignItems: "center",
+    padding: 20,
     flex: 1,
   },
   subtitle: {
