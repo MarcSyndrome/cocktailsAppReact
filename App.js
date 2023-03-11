@@ -28,11 +28,12 @@ function HomeScreen() {
   );
 }
 
+// Composant affichant les nom dans la navbar du haut
 function Home() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Cocktails aléatoires" component={ListCocktails} />
-      <Stack.Screen name="Detail" component={DetailsCocktails} />
+      <Stack.Screen name="Detail du cocktail" component={DetailsCocktails} />
     </Stack.Navigator>
   );
 }
