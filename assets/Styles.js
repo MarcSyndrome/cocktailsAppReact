@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     elevation: 9,
   },
   image: {
-    width: 170,
+    width: "100%",
     height: 170,
     borderRadius: 10,
   },
@@ -53,10 +53,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   card: {
+    width: 220,
     backgroundColor: "#fff",
-    marginBottom: 26,
-    borderRadius: 8,
-    overflow: "hidden",
+    marginTop: 35,
+    marginBottom: 10,
+    borderRadius: 5,
     elevation: 6,
   },
   category: {
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#666",
     marginTop: 10,
-  }
+  },
 });
 
 export default styles;
