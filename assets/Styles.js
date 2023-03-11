@@ -25,10 +25,21 @@ const styles = StyleSheet.create({
     },
     elevation: 9,
   },
+  imageContainerDetails: {
+    width: 220,
+    height: 250,
+    margin: 15,
+    marginBottom: 40,
+  },
   image: {
     width: "100%",
     height: 170,
     borderRadius: 10,
+  },
+  imageDetails: {
+    width: "100%",
+    height: 280,
+    borderRadius: 4,
   },
   textDefinition: {
     fontWeight: "bold",
@@ -71,10 +82,52 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 25,
     color: "#666",
+    fontStyle: "italic",
+    fontWeight: "bold",
     marginTop: 10,
   },
+  subSubtitle: {
+    fontSize: 20,
+    color: "#666",
+    fontStyle: "italic",
+    fontWeight: "bold",
+  },
+  detailsContainer: {
+    alignItems: "center",
+  },
+  titleCocktail: {
+    fontSize: 39,
+    fontStyle: "italic",
+    fontWeight: "bold",
+  },
+  instructions: {
+    fontSize: 16,
+    width: 300,
+    margin: 10,
+    fontStyle: "italic",
+  },
+  recipeItem: {
+    padding: 15,
+    backgroundColor: "black",
+    alignItems: "center",
+    margin: 10,
+    opacity: 0.8,
+    borderRadius: 5,
+  },
+  measure:{
+    fontSize: 16,
+    color: "white",
+    fontStyle: "italic",
+    fontWeight: "bold",
+  },
+  ingredient:{
+    fontSize: 16,
+    color: "white",
+    fontStyle: "italic",
+    fontWeight: "bold",
+  }
 });
 
 export default styles;
