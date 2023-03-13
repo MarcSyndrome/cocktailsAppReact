@@ -30,6 +30,15 @@ function CocktailList({ navigation }) {
     setCocktails(cocktailsData);
   };
 
+  const fetchMoreCocktails = async () => {
+    const cocktailsData = [];
+    for (let i = 0; i < 10; i++) {
+      const cocktail = await fetchCocktails();
+      cocktailsData.push(cocktail);
+    }
+    setCocktails([...cocktails,...cocktailsData]);
+  }
+
   // effet qui appelle fetchAllCocktails() une seule fois au chargement de la liste des cocktails
   useEffect(() => {
     fetchAllCocktails();
@@ -69,6 +78,8 @@ function CocktailList({ navigation }) {
         data={cocktails}
         keyExtractor={(item) => item.idDrink}
         renderItem={renderCocktail}
+        onEndReached={fetchMoreCocktails}
+        onEndReachedThreshold={0.8}
       />
     </View>
   );
