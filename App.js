@@ -32,8 +32,8 @@ function HomeScreen() {
 function Home() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Cocktails aléatoires" component={ListCocktails} />
-      <Stack.Screen name="Detail du cocktail" component={DetailsCocktails} />
+      <Stack.Screen name="Cocktails" component={ListCocktails} />
+      <Stack.Screen name="Detail" component={DetailsCocktails} />
     </Stack.Navigator>
   );
 }
